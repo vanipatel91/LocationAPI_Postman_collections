@@ -1,0 +1,733 @@
+{
+	"info": {
+		"_postman_id": "2dcc0f66-4497-4646-8f06-d15e32e1e86b",
+		"name": "LocationAPI_Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "StateAPI_Test",
+			"item": [
+				{
+					"name": "Get_States_with_valid_parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d09837a5-1536-4b3c-b0d3-7c0651629f7a",
+								"exec": [
+									"pm.test(\"Status code should be 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time should below 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_states_with_Invalid_parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "31fb4068-195c-4484-84a8-be67b52772b9",
+								"exec": [
+									"pm.test(\"Status code should be 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_states_with_missing_parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82eb0ff6-4bf1-4ff8-8b82-c547e44b1910",
+								"exec": [
+									"pm.test(\"Status code should be 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_states_directory_not_found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "80da0410-99d2-4674-bdcc-0e1226ea9a60",
+								"exec": [
+									"pm.test(\"Response code Direcory not found 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_states_with_multiple_request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b1b6e837-8827-4066-8239-26c179c487f4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d3dc3bba-b585-460c-b82c-0bf40fcf990c",
+								"exec": [
+									"pm.test(\"Too Many Requests code : 429\", function () {\r",
+									"    pm.response.to.have.status(429);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_states_response_Internal_server_error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1d214ec4-d673-4b57-abee-617ace2e74f8",
+								"exec": [
+									"pm.test(\"Internal Server Error code 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_States_Service_not_available",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "886b8f7b-e2a1-4a08-95f4-6c6a35948a24",
+								"exec": [
+									"pm.test(\"Service Unavailable Error code 503\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_states_API_gateway_timeout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5e75691-bea8-48a4-af30-f8d745ef2a54",
+								"exec": [
+									"pm.test(\"API Status code should be 504\", function () {\r",
+									"    pm.response.to.have.status(504);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Retrieve states.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5a00c556-8327-4898-93ac-a4b776b7269e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9754212b-0021-47df-9144-f15266c5762f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ZipCodeAPI_Test",
+			"item": [
+				{
+					"name": "Get_Zipcode_details_with_valid_zipcode_parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "316fefa7-4457-4513-8235-8ad7f8f00dad",
+								"exec": [
+									"pm.test(\"Status code should be 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time should below 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/zipcodes/{zipcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"zipcodes",
+								"{zipcode}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Zipcode_details_with_invalid_Zipcode_len_gt_5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f260a58d-caea-44a7-87b8-cabd5d0e92cd",
+								"exec": [
+									"pm.test(\"Status code should be 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/zipcodes/{zipcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"zipcodes",
+								"{zipcode}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Zipcode_details_with_Invalid_Zipcode_len_lt_5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c7862568-ca24-4263-8dfa-3843880935cf",
+								"exec": [
+									"pm.test(\"Status code should be 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/zipcodes/{zipcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"zipcodes",
+								"{zipcode}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Zipcode_details_directory_not_found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70d774a3-3c92-48b1-b179-59698e8399f0",
+								"exec": [
+									"pm.test(\"Response code Direcory not found 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/zipcodes/{zipcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"zipcodes",
+								"{zipcode}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Zipcode_details_with_multiple_request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ad3d42f-d358-4548-90c5-e3114bfc6d22",
+								"exec": [
+									"pm.test(\"Too Many Requests code : 429\", function () {\r",
+									"    pm.response.to.have.status(429);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/zipcodes/{zipcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"zipcodes",
+								"{zipcode}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Zipcode_details_response_Internal_server_error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2afeab7a-dc1f-487e-b370-487e17a9d22f",
+								"exec": [
+									"pm.test(\"Internal Server Error code 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/zipcodes/{zipcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"zipcodes",
+								"{zipcode}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Zipcode_details_service_not_available",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8e4e9043-7e4e-442e-9fdf-d641ee40a18a",
+								"exec": [
+									"pm.test(\"Service Unavailable Error code 503\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/zipcodes/{zipcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"zipcodes",
+								"{zipcode}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Zipcode_details_API_gateway_timeout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4f8bbcc-3880-4a1c-8473-f02ddb83be15",
+								"exec": [
+									"pm.test(\"API Status code should be 504\", function () {\r",
+									"    pm.response.to.have.status(504);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/zipcodes/{zipcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"zipcodes",
+								"{zipcode}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Get the details of the provided ZIP Code",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "868a957f-fcbb-492c-a863-382693057377",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c7f17ec-3ee0-438c-ba89-046a935ce412",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TitleAPI_Test",
+			"item": [
+				{
+					"name": "Get_Title_details_with_valid_state_code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states/{state_code}/titlehelp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states",
+								"{state_code}",
+								"titlehelp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Title_details_with_missing_state_code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states/{state_code}/titlehelp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states",
+								"{state_code}",
+								"titlehelp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_title_details_with_invalid_state_code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states/{state_code}/titlehelp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states",
+								"{state_code}",
+								"titlehelp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Title_details_with_state_code_len_gt_2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states/{state_code}/titlehelp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states",
+								"{state_code}",
+								"titlehelp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Title_details_with_state_code_len_lt_2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/states/{state_code}/titlehelp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"states",
+								"{state_code}",
+								"titlehelp"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Retrieve title help for provide state.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "59c0ae1f-ed87-4bdf-95d9-76ecae027dfb",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c5e0cfff-89b2-47fc-ba93-c7ac3cf9774d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
